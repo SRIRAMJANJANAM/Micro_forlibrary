@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if book %}Edit{% else %}Add{% endif %} Book</title>
+    <style>
+        form{
+    display: flex;
+    flex-direction: column;
+    column-gap: 100px;
+    border: 2px solid green;
+    width: 50vw;
+    padding: 2vw;
+    border-radius: 10px;
+    font-size: 2vw;
+    color: black;
+    background-image: none;
+    
+}
+form, button,input[type=reset],input,label,p,select{
+    background-image: none;
+}
+button,input[type=reset]{
+    width: 10vw;
+    margin: auto;
+    margin-top: 1vw;
+    background-color: green;
+    font-size: 1.5vw;
+    border-radius: 2vw;
+    color: white;
+    padding: 1%;
+    
+}
+
+input{
+    width: 25vw;
+    border: 0;
+    border-bottom: 2.5px solid red;
+    text-align: center;
+    outline: 0;
+    font-size: 1.3vw;
+    background-color: rgb(234, 237, 238);
+    color: red;
+    font-family: "Sigmar", sans-serif;
+    padding: 10px;
+}input[type=file]{
+    border: 0;
+}
+table{
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid white;
+    justify-content: space-between;
+    width: 80%;
+}
+th{
+    color: rgb(0, 245, 41);
+    padding: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2vw;
+    background-color: black;
+
+}
+td{
+    text-align: center;
+    font-size: 1.5vw;
+    color: black;
+    padding: 5px;
+    background-color: rgb(18, 208, 255);
+    font-family: "Barlow Condensed", serif;
+    border-radius: 10px;
+    padding: 10px;
+}
+td img{
+    border-radius: 5%;
+    width: 80px;
+}
+a{
+    color: red;
+    font-size: 1.6vw;
+    font-family: serif;
+    text-decoration: underline;
+    border: 0;
+}
+select{
+    width: 20vw;
+    background-color: rgb(18, 208, 255);
+    text-align: center;
+    color:  red;
+    font-size: 1.5vw;
+    border-radius: 10px;
+    border: 1px solid red;
+    padding: 2px;
+}
+option{
+    text-align: center;
+}
+h1{
+    color: white;
+    font-family: "Barlow Condensed", serif;
+    font-size: 3vw;
+    text-decoration: underline;
+    margin-top: 2.5vw;
+}
+#form-container {
+    opacity: 0;
+    transition: opacity 0.1s;
+}
+#form-container.show {
+    opacity: 1;
+}
+p{
+    background-color: rgb(18, 208, 255);
+    padding: 1vw;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 10px;
+}
+#main h1{
+    color: red;
+}
+    </style>
+</head>
+<body>
+    <div align="center">
+        <h1 style="color: red;">{% if book %}Edit{% else %}Add{% endif %} Book</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if book %}Save Changes{% else %}Add Book{% endif %}</button>
+        <a href="{% url 'book_list' %}">
+            <button type="button">Cancel</button>
+        </a>
+    </form>
+    </div>
+</body>
+</html>
